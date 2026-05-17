@@ -3,6 +3,7 @@ from sqlalchemy import (
     Date,
     DateTime,
     Index,
+    Integer,
     Numeric,
     String,
     func,
@@ -14,7 +15,7 @@ from app.db.base import Base
 class Employee(Base):
     __tablename__ = "employees"
 
-    id = Column(String, primary_key=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
 
     full_name = Column(String(255), nullable=False)
 
