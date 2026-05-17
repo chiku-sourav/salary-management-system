@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 
+from app.api.employees import router as employee_router
+
 app = FastAPI()
 
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+app.include_router(employee_router)

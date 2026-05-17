@@ -19,5 +19,15 @@ class EmployeeCreate(BaseModel):
     @classmethod
     def validate_full_name(cls, value: str):
         if not value.strip():
-            raise ValueError("full_name cannot be empty")
+            raise ValueError("full name cannot be empty")
         return value
+
+
+class EmployeeResponse(BaseModel):
+    id: int
+    name: str
+    email: EmailStr
+    department: str
+
+    class Config:
+        from_attributes = True
