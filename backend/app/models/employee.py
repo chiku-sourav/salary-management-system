@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-from app.db.base import Base
->>>>>>> cc57f5b (git commit -m "feat: add employee database model")
 from sqlalchemy import (
     Column,
     Date,
@@ -12,11 +8,8 @@ from sqlalchemy import (
     func,
 )
 
-<<<<<<< HEAD
 from app.db.base import Base
 
-=======
->>>>>>> cc57f5b (git commit -m "feat: add employee database model")
 
 class Employee(Base):
     __tablename__ = "employees"
