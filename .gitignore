@@ -1,0 +1,27 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.env/
+
+# Environment variables
+.env
+
+# SQLite
+*.db
+*.sqlite3
+
+# Pytest
+.pytest_cache/
+
+# Mypy
+.mypy_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
