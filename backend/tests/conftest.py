@@ -27,22 +27,15 @@ def setup_test_db():
 
 @pytest.fixture(autouse=True)
 def db_session():
-    connection = engine.connect()
-    transaction = connection.begin()
-    session = TestingSessionLocal(bind=connection)
-
-    session.begin_nested()
-
-    @event.listens_for(session, "after_transaction_end")
-    def restart_savepoint(sess, trans):
-        if trans.nested and not trans._parent.nested:
-            sess.begin_nested()
-
-    yield session
-
-    session.close()
-    transaction.rollback()  # Flushes all memory state cleanly back to blank zero
-    connection.close()
+    """Provides a pristine session per test case by wiping tables on teardown."""
+    session = TestingSessionLocal()
+    try:
+        yield session
+    finally:
+        session.close()
+        # Drop and recreate schema definitions instantly to preserve a clean slate
+        Base.metadata.drop_all(bind=engine)
+        Base.metadata.create_all(bind=engine)
 
 
 @pytest.fixture(autouse=True)
