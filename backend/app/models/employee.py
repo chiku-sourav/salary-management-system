@@ -33,6 +33,8 @@ class Employee(Base):
     )
 
     __table_args__ = (
+        Index("idx_country", "country"),
+        Index("idx_job_title", "job_title"),
         Index(
             "ix_employees_country_job_title",
             "country",
