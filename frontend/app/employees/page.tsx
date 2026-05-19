@@ -28,7 +28,7 @@ export default function EmployeesPage() {
             )
 
             setEmployees(response.data.items)
-            setTotalPages(response.data.page_size)
+            setTotalPages(Math.ceil(response.data.total / pageSize))
 
         } catch {
             setError("Failed to load employees")
