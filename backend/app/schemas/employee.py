@@ -1,7 +1,7 @@
 from datetime import date
 from decimal import Decimal
 
-from pydantic import BaseModel, EmailStr, Field, field_validator
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
 
 
 class EmployeeCreate(BaseModel):
@@ -23,10 +23,28 @@ class EmployeeCreate(BaseModel):
         return value
 
 
+class EmployeeUpdate(BaseModel):
+    full_name: str | None
+    email: EmailStr | None
+    country: str | None
+    job_title: str | None
+    department: str | None
+    salary: Decimal | None = Field(default=None, gt=0)
+    currency: str | None
+    employment_type: str | None
+    joining_date: date | None
+
+
 class EmployeeResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
     full_name: str
     email: EmailStr
+    country: str
+    job_title: str
     department: str
-
-    class Config:
-        from_attributes = True
+    salary: Decimal = Field(gt=0)
+    currency: str
+    employment_type: str
+    joining_date: date

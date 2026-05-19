@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.api.employees import router as employee_router
+from app.controllers.employee_controller import router as employee_router
 
 app = FastAPI()
 
