@@ -15,3 +15,11 @@ router = APIRouter(prefix="/insights", tags=["Insights"])
 )
 def get_country_salary_insights(service: InsightsService = Depends()):
     return service.fetch_country_salary_insights()
+
+
+@router.get(
+    "/job-title-salary",
+    response_model=list[JobTitleSalaryInsight],
+)
+def get_job_title_salary_insights(service: InsightsService = Depends()):
+    return service.fetch_job_title_salary_insights()

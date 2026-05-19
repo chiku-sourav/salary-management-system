@@ -20,3 +20,16 @@ class InsightsService:
             }
             for row in results
         ]
+
+    def fetch_job_title_salary_insights(self) -> list:
+        results = self.repo.get_job_title_salary_stats()
+
+        return [
+            {
+                "country": row.country,
+                "job_title": row.job_title,
+                "avg_salary": round(float(row.avg_salary), 2),
+                "employee_count": row.employee_count,
+            }
+            for row in results
+        ]

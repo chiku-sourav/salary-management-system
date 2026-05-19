@@ -7,3 +7,10 @@ class CountrySalaryInsight(BaseModel):
     min_salary: float
     max_salary: float
     employee_count: int
+
+
+class JobTitleSalaryInsight(BaseModel):
+    country: str
+    job_title: str
+    avg_salary: float
+    employee_count: int

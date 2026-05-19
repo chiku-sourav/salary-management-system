@@ -22,3 +22,15 @@ class InsightsRepository:
             .group_by(Employee.country)
             .all()
         )
+
+    def get_job_title_salary_stats(self):
+        return (
+            self.db.query(
+                Employee.country.label("country"),
+                Employee.job_title.label("job_title"),
+                func.avg(Employee.salary).label("avg_salary"),
+                func.count(Employee.id).label("employee_count"),
+            )
+            .group_by(Employee.country, Employee.job_title)
+            .all()
+        )
