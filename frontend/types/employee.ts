@@ -6,3 +6,11 @@ export interface Employee {
     department: string
     job_title: string
 }
+
+export interface EmployeeResponse {
+    items: Employee[]
+    total: number
+    page: number
+    page_size: number
+    total_pages: number
+}
